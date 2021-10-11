@@ -1,0 +1,4 @@
+[PLUGIN]
+name = "test"
+purpose = "A test API that sends a response confirming the server is operational."
+priority = -1

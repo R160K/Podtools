@@ -1,0 +1,4 @@
+[PLUGIN]
+name = "spotify_tools"
+purpose = "Various APIs for interacting with Spotify's API for podcasts."
+priority = 23

@@ -1,0 +1,4 @@
+[PLUGIN]
+name = "spotify_tools___get_refresh_token"
+purpose = "A plugin that retrieves a Spotify refresh token for a user."
+priority = 100
