@@ -1,0 +1,4 @@
+[PLUGIN]
+name = "rss_finder"
+purpose = "An API that returns RSS files from podcast URLs."
+priority = 50
