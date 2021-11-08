@@ -1,2 +1,3 @@
 /.git/
 /secrets
+__pycache__
