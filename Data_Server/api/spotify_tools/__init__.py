@@ -6,6 +6,9 @@ import general
 import urllib.parse
 import api.spotify_tools.access
 
+#api.common must be imported as api.common because the package already contains a module called common
+import api.common as common
+
 #A local variable to hold "/spotify/" url hooks
 urlHooks = []
 
@@ -22,13 +25,6 @@ def url_hook(path):
     else:
         return None
 
-
-api.urlHooks += [url_hook]
-
-#Load plugins for this package
-packages = plugins.get_plugins("api\\spotify_tools\\plugins")
-plugins.load_plugins(packages)
-
-print("urlHooks:",urlHooks)
+common.set_up_url_hooks()
 
 print("...Spotify API loaded successfully!")

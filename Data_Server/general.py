@@ -1,6 +1,16 @@
 #Functions and classes for general use.
 import urllib.parse
+import engine.signal as signal
+import sys, inspect
 
+ERR_PAGE_HREF = "./engine/html/error.html"
+err_page = signal.ValueLoader(ERR_PAGE_HREF)
+
+BASE_URL_HREF = "../public/base_url.txt"
+base_url = signal.ValueLoader(BASE_URL_HREF)
+
+
+###URL CHECKERS###
 
 #Function to check if a given "path" begins with a given "sought".
 #NOTE: If "sought" does not end with a "/", returns False.
@@ -59,21 +69,68 @@ def isEndpoint(path,sought,returnVar="True"):
     else:
         return False
 
+
+
+###PAGE BUILDERS###
+
 #A few boilerplate parts of responses
 XML_HEADERS = (("Content-type","text/xml"),("charset","utf-8"))
 HTML_HEADERS = (("Content-type","text/html"),("charset","utf-8"))
 JSON_HEADERS = (("Content-type","application/json"),("charset","utf-8"))
 
-def error_page(code, title, message):
-    with open("./engine/html/error.html", "r") as f:
-        Body = f.read() % (title, message)
-    
-    Headers = HTML_HEADERS
-    Code = code
-    return resp_builder(Code, Headers, Body)
     
 def resp_builder(Code, Headers, Body):
     return {"Code": Code, "Headers": Headers, "Body": Body}
 
 async def display_page(data):
     return data
+
+def fill_template(temp, d):
+    pre = temp
+    for k in d:
+        pre = pre.replace("{"+k+"}", d[k])
+    
+    return pre
+
+def error_page(code, message, title="Oooops..."):
+    d = {"err_num": str(code), "title": title, "message": message}
+    
+    global err_page
+    o = fill_template(err_page.content, d)
+    
+    Headers = HTML_HEADERS
+    
+    return resp_builder(code, Headers, o)
+
+
+
+###HOOK SYSTEM###
+
+def add_hook(modname, listname, hook):
+    l = getattr(sys.modules[modname], listname)
+    l += [hook]
+
+def hooker(modname, listname, hookname):
+    def wrapper(func):
+        def new_func():
+            frm = inspect.stack()[1]
+            mod = inspect.getmodule(frm[0])
+            hook = getattr(mod, hookname)
+            
+            print("Called by: %s." % mod.__name__)
+            
+            def onload():
+                add_hook(modname, listname, hook)
+                print("%s loaded successfully." % mod.__name__)
+            
+            def cleanup():
+                print("Cleaning up %s..." % mod.__name__)
+                l = getattr(sys.modules[modname], listname)
+                l.remove(hook)
+            
+            func()
+            
+            setattr(mod, "onload", onload)
+            setattr(mod, "cleanup", cleanup)
+        return new_func
+    return wrapper

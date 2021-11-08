@@ -1,0 +1,6 @@
+[PLUGIN]
+name = api.rss_finder
+purpose = "A plugin for getting the RSS feed from an iTunes URL using the iTunes API."
+priority = 200
+cleanup = cleanup
+onload = onload

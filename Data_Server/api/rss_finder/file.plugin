@@ -1,4 +1,7 @@
 [PLUGIN]
-name = "rss_finder"
+name = api.rss_finder
 purpose = "An API that returns RSS files from podcast URLs."
-priority = 50
+priority = 100
+cleanup = cleanup
+onload = onload
+plugins = api/rss_finder/plugins

@@ -9,6 +9,7 @@ import api.spotify_tools.access as access
 import engine.async_if as async_if
 from api.spotify_tools.rss_builder import makeRSS, makeRSSShow, makeRSSEpisodes
 import json
+import api.spotify_tools.plugins.common as common
 
 print("spotify_tools.show_pseudo_rss loading...")
 
@@ -32,28 +33,40 @@ def url_hook(path):
                 func = stream_show
                 return {"data": data, "func": func, "streamed": True}
             else:
-                msg = "Neither a market code nor a refresh token were provided."
-                return {"data": general.error_page(400, msg, msg), "func": general.display_page}
+                msg = "BAD REQUEST: Neither a market code nor a refresh token were provided."
+                return {"data": general.error_page(400, msg), "func": general.display_page}
         else:
-            msg = "No show id provided."
-            return {"data": general.error_page(400, msg, msg), "func": general.display_page}
+            msg = "BAD REQUEST: No show id provided."
+            return {"data": general.error_page(400, msg), "func": general.display_page}
     else:
         return None
-
-spotify_tools.urlHooks += [url_hook]
 
 async def stream_show(data):
     #1. Get access token
     if "market" in data.keys():
         market = data["market"]
-        access_token = await access.get_token_cc()
+        
+        try:
+            access_token = await access.get_token_cc()
+        except access.TokenNotReturnedError as e:
+            yield {"error": True, "Code": 500, "message": "ERROR: Spotify refused an access token for the current client."}
+        except access.TokenResponseError as e:
+            yield {"error": True, "Code": 500, "message": "ERROR: Spotify did not respond to the request."}
+        
         print("Got access token via client credentials flow.")
     elif "refresh_token" in data.keys():
         market = "from_token"
-        access_token = await access.get_token_ac(data["refresh_token"])
+        
+        try:
+            access_token = await access.get_token_ac(data["refresh_token"])
+        except access.TokenNotReturnedError as e:
+            yield {"error": True, "Code": 400, "message": "BAD REQUEST: Spotify refused an access token with the given refresh token:<br /><div style='font-size:14pt'>%s</div>" % data["refresh_token"]}
+        except access.TokenResponseError as e:
+            yield {"error": True, "Code": 500, "message": "ERROR: Spotify did not respond to the request."}
+        
         print("Got access token from refresh token.")
     else:
-        raise Exception("Invalid request: neither market nor refresh_token included in query string. No access_token could be retrieved.")
+        yield {"error": True, "Code": 400, "message": "BAD REQUEST: Neither a market code nor a refresh token were provided."}
     
     #2. Get show item (check if show exists)
     print("Getting show:",data["ident"],"in market",market)
@@ -62,9 +75,7 @@ async def stream_show(data):
     show_resp = await async_if.get_response("https://api.spotify.com/v1/shows/" + data["ident"] + "?market=" + market, headers=head)
     
     if not show_resp.code == 200:
-        raise Exception("Error: show could not be found.")
-    
-    #TODO: PERHAPS FIND A WAY TO DO THIS ASYNC, WHILE WAITING FOR MORE DATA REQUESTS, OR IN A SEPARATE PROCESS
+        yield {"error": True, "Code": 404, "message": "NOT FOUND: The show requested could not be found with ID:<br /><div style='font-size:14pt'>%s</div>" % data["ident"]}
     
     
     offset = 0
@@ -78,7 +89,7 @@ async def stream_show(data):
             show = json.loads(show_resp.body)
             top = makeRSSShow(show)
             started = True
-            yield {"Code": 200, "Headers": general.XML_HEADERS, "data": top}
+            yield {"start": True, "Code": 200, "Headers": general.XML_HEADERS, "data": top}
         else:
             new_eps = await async_if.get_response("https://api.spotify.com/v1/shows/" + data["ident"] + "/episodes?limit=50&offset=" + str(offset) + "&market=" + market, headers=head)
             js = json.loads(new_eps.body)
@@ -91,3 +102,12 @@ async def stream_show(data):
                 finished = True
                 rss = makeRSSEpisodes(js["items"], True)
                 yield {"data": rss, "end": True}
+
+# def onload():
+    # general.add_hook("api.spotify_tools", "urlHooks", url_hook)
+    # print("api.spotify_tools.plugins.show_pseudo_rss loaded successfully.")
+
+# def cleanup():
+    # print("Cleaning up api.spotify_tools.plugins.show_pseudo_rss...")
+    # spotify_tools.urlHooks.remove(url_hook)
+common.set_up_url_hooks()

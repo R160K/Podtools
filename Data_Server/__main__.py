@@ -1,6 +1,7 @@
 #API main script
 import importlib
 import engine
+import asyncio
 
 print("Hello world!")
 
@@ -10,5 +11,12 @@ import api
 print("Complete.")
 
 
-#Start the engine
+# #Start the engine
+# # engine.start_server()
+
+# # async def main():
+    # # await engine.start_server2()
+
+# # asyncio.run(main())
+
 engine.start_server()

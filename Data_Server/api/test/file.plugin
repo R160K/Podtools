@@ -1,4 +1,6 @@
 [PLUGIN]
-name = "test"
+name = api.test
 purpose = "A test API that sends a response confirming the server is operational."
-priority = -1
+priority = 99
+cleanup = cleanup
+onload = onload

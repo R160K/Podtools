@@ -3,6 +3,7 @@ print("Importing test plugin...")
 
 import general
 import api
+import api.common as common
 
 def url_hook(path):
     if general.isEndpoint(path,"/test"):
@@ -11,7 +12,7 @@ def url_hook(path):
     else:
         return None
 
-api.urlHooks += [url_hook]
+# api.urlHooks += [url_hook]
 
 async def give_test_response(data):
     print("api.test.give_test_response2 triggered.")
@@ -29,5 +30,7 @@ async def give_test_response(data):
         }
     
     return response
+
+common.set_up_url_hooks()
 
 print("Test plugin imported successfully!")

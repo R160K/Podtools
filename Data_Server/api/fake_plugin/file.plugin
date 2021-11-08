@@ -1,4 +1,6 @@
 [PLUGIN]
-name = "fake_plugin"
-purpose = "Various APIs for interacting with Spotify's API for podcasts."
-priority = 200
+name = api.fake_plugin
+purpose = "Fake plugin."
+priority = 100
+onload = onload
+cleanup = cleanup

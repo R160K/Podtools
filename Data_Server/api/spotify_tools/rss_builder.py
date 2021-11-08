@@ -1,16 +1,13 @@
 #api.spotify_tools.rss_builder
-#Build an RSS feed from a Spotify show object and a list of Spotify episode objects
-f = open("./api/spotify_tools/rss_templates/head.rss")
-head = f.read()
-f.close()
+import engine.signal as signal
 
-f = open("./api/spotify_tools/rss_templates/foot.rss")
-foot = f.read()
-f.close()
+HEAD_HREF = "./api/spotify_tools/rss_templates/head.rss"
+FOOT_HREF = "./api/spotify_tools/rss_templates/foot.rss"
+EP_TEMPLATE_HREF = "./api/spotify_tools/rss_templates/episode.rss"
 
-f = open("./api/spotify_tools/rss_templates/episode.rss")
-ep_template = f.read()
-f.close()
+head = signal.ValueLoader(HEAD_HREF)
+foot = signal.ValueLoader(FOOT_HREF)
+ep_template = signal.ValueLoader(EP_TEMPLATE_HREF)
 
 stock_mp3 = "https://download1645.mediafire.com/njvgj0wvfybg/v8cw2s4et4ivvxs/spotify_stock.mp3"
 
@@ -30,7 +27,7 @@ def makeRSS(show,episodes):
     values = (title, link, language, copyright_, itunes_author, description, image, explicit)
     
     #Fill in values
-    RSS = head % values
+    RSS = head.content % values
     
     #Generate episodes
     for e in episodes:
@@ -50,10 +47,10 @@ def makeRSS(show,episodes):
             date_str = "Wed, 29 Sep 2021 05:00:50 GMT"
         
         values = (title, url, description, link, explicit, guid, date_str)
-        RSS += ep_template % values
+        RSS += ep_template.content % values
     
     #Add foot
-    RSS += foot
+    RSS += foot.content
     
     uRSS = RSS.encode('utf-8', 'ignore')
     
@@ -67,7 +64,7 @@ def makeRSSShow(show):
     copyright_ = ""
     if show["copyrights"]:
         copyright_ = show["copyrights"][0]
-    itunes_author = show["publisher"]
+    itunes_author = show["publisher"].replace("&", "&amp;")
     description = show["description"].replace("&", "&amp;")
     image = show["images"][0]["url"]
     explicit = show["explicit"]
@@ -75,7 +72,7 @@ def makeRSSShow(show):
     values = (title, link, language, copyright_, itunes_author, description, image, explicit)
     
     #Fill in values
-    RSS = head % values
+    RSS = head.content % values
     
     uRSS = RSS.encode('utf-8', 'ignore')
     return uRSS
@@ -87,7 +84,7 @@ def makeRSSEpisodes(episodes, isEnd=False):
         title = e["name"].replace("&", "&amp;")
         url = stock_mp3
         description = e["description"] + "\n\nThis podcast is only available on Spotify. To listen to this episode go to: " + e["external_urls"]["spotify"]
-        description = description.replace("&", "&amp;")
+        # description = description.replace("&", "&amp;")
         link = e["external_urls"]["spotify"]
         explicit = e["explicit"]
         guid = e["uri"]
@@ -100,11 +97,11 @@ def makeRSSEpisodes(episodes, isEnd=False):
             date_str = "Wed, 29 Sep 2021 05:00:50 GMT"
         
         values = (title, url, description, link, explicit, guid, date_str)
-        RSS += ep_template % values
+        RSS += ep_template.content % values
     
     if isEnd:
         #Add foot
-        RSS += foot
+        RSS += foot.content
     
     uRSS = RSS.encode('utf-8', 'ignore')
     return uRSS

@@ -4,8 +4,7 @@ urlHooks = []
 
 #Load each package in the api directory using plugins module.
 import plugins
-packages = plugins.get_plugins("api")
-plugins = plugins.load_plugins(packages,returnVar=1)
+_plugins = plugins.do_it_all("api")
 
 import engine.async_if as async_if
 import urllib.parse
