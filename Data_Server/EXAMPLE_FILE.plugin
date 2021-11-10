@@ -1,0 +1,9 @@
+#TEMPLATE
+[PLUGIN]
+name = #Python module name [NECESSARY]
+purpose = #Double-quote encased string specifying the purpose of this particular plugin [NECESSARY]
+priority = #Number expressing where in the order of priority this plugin should be loaded. [NECESSARY]
+onload = #Function that should be called after this plugin is successfully loaded. [OPTIONAL]
+cleanup = #Function that should be called after this plugin is unloaded. [OPTIONAL]
+plugins = #The directory of plugins to load when loading this module. [OPTIONAL]
+dependencies = #A list of plugins on which this plugin is dependent. If one or more is not primed or loaded, the plugin will not load.

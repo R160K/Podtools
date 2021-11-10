@@ -1,0 +1,6 @@
+[PLUGIN]
+name = api.rss_finder.spreaker
+purpose = "A plugin for retrieving rss feeds from spreaker urls using the spreaker api."
+priority = 200
+cleanup = cleanup
+onload = onload

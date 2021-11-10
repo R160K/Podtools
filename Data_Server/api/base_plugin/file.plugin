@@ -1,0 +1,6 @@
+[PLUGIN]
+name = api.base_plugin
+purpose = "A basic plugin package that can be copied and pasted to create new plugins."
+priority = 100
+#onload = onload
+#cleanup = cleanup

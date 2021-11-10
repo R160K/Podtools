@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<opml version="2.0">
+    <head>
+        <title>My Spotify subs.</title>
+		<docs>http://opml.org/spec2.opml</docs>
+    </head>
+    <body>
+		<outline type="rss" text="The Ties That Bind Us" title="The Ties That Bind Us" xmlUrl="http://api.podtools.test/spotify/show?id=6XWGEYeZaj6iOJh4fqeMER&amp;market=GB" htmlUrl="https://play.spotify.com/show/6XWGEYeZaj6iOJh4fqeMER" />
+		<outline type="rss" text="Greaux Rugby Show with Gift 'GiftTime' Egbelu" title="Greaux Rugby Show with Gift 'GiftTime' Egbelu" xmlUrl="http://api.podtools.test/spotify/show?id=1zTF1uCJSPq75d79OOHDE5&amp;market=GB" htmlUrl="https://play.spotify.com/show/1zTF1uCJSPq75d79OOHDE5" />
+		<outline type="rss" text="7th Heaven Pod" title="7th Heaven Pod" xmlUrl="http://api.podtools.test/spotify/show?id=2M1wwGkRts0ImqF2pQMIiw&amp;market=GB" htmlUrl="https://play.spotify.com/show/2M1wwGkRts0ImqF2pQMIiw" />
+		<outline type="rss" text="The Next Game: A Story Of Transition" title="The Next Game: A Story Of Transition" xmlUrl="http://api.podtools.test/spotify/show?id=2MU0z3CxA0EkVvXFaKFyN5&amp;market=GB" htmlUrl="https://play.spotify.com/show/2MU0z3CxA0EkVvXFaKFyN5" />
+		<outline type="rss" text="The FFS Show" title="The FFS Show" xmlUrl="http://api.podtools.test/spotify/show?id=3fTg3OQNKXNozntMPWNogQ&amp;market=GB" htmlUrl="https://play.spotify.com/show/3fTg3OQNKXNozntMPWNogQ" />
+		<outline type="rss" text="The Rugby Robcast" title="The Rugby Robcast" xmlUrl="http://api.podtools.test/spotify/show?id=4YT5CrMrA0pzqPmtGQi9ez&amp;market=GB" htmlUrl="https://play.spotify.com/show/4YT5CrMrA0pzqPmtGQi9ez" />
+		<outline type="rss" text="The Brian Taylor Podcast" title="The Brian Taylor Podcast" xmlUrl="http://api.podtools.test/spotify/show?id=1TFeiyIjd6qrmcVHUs7sSK&amp;market=GB" htmlUrl="https://play.spotify.com/show/1TFeiyIjd6qrmcVHUs7sSK" />
+		<outline type="rss" text="Happiness Is with Bruce Aitchison" title="Happiness Is with Bruce Aitchison" xmlUrl="http://api.podtools.test/spotify/show?id=2Wi4hAlrFILKIksekcm5Hr&amp;market=GB" htmlUrl="https://play.spotify.com/show/2Wi4hAlrFILKIksekcm5Hr" />
+		<outline type="rss" text="Brydon &amp;" title="Brydon &amp;" xmlUrl="http://api.podtools.test/spotify/show?id=3OcTTmr7iulkTCddZv2k4x&amp;market=GB" htmlUrl="https://play.spotify.com/show/3OcTTmr7iulkTCddZv2k4x" />
+		<outline type="rss" text="The Rugby Pod" title="The Rugby Pod" xmlUrl="http://api.podtools.test/spotify/show?id=1GvNoTU8VBcrEyHJQ2LlWN&amp;market=GB" htmlUrl="https://play.spotify.com/show/1GvNoTU8VBcrEyHJQ2LlWN" />
+		<outline type="rss" text="The Telf Rugby Podcast" title="The Telf Rugby Podcast" xmlUrl="http://api.podtools.test/spotify/show?id=05vvqwmggwAbP7NebyMDhk&amp;market=GB" htmlUrl="https://play.spotify.com/show/05vvqwmggwAbP7NebyMDhk" />
+		<outline type="rss" text="Not Another Rugby Podcast" title="Not Another Rugby Podcast" xmlUrl="http://api.podtools.test/spotify/show?id=65jK5lzhkgNxH5lf2fckFM&amp;market=GB" htmlUrl="https://play.spotify.com/show/65jK5lzhkgNxH5lf2fckFM" />
+		<outline type="rss" text="The Loose Head Podcast" title="The Loose Head Podcast" xmlUrl="http://api.podtools.test/spotify/show?id=0cyqRfIzzFwYOgqujBSuaX&amp;market=GB" htmlUrl="https://play.spotify.com/show/0cyqRfIzzFwYOgqujBSuaX" />
+		<outline type="rss" text="Inside The Castle" title="Inside The Castle" xmlUrl="http://api.podtools.test/spotify/show?id=4eD78EQxpQF3guUBkE7U7w&amp;market=GB" htmlUrl="https://play.spotify.com/show/4eD78EQxpQF3guUBkE7U7w" />
+		<outline type="rss" text="Commons Library Podcast" title="Commons Library Podcast" xmlUrl="http://api.podtools.test/spotify/show?id=4oWZRh05msPCTs8YL14pcR&amp;market=GB" htmlUrl="https://play.spotify.com/show/4oWZRh05msPCTs8YL14pcR" />
+		<outline type="rss" text="Rock Sport Radio" title="Rock Sport Radio" xmlUrl="http://api.podtools.test/spotify/show?id=3ULH2wZtq1V7YV9tkL7hxq&amp;market=GB" htmlUrl="https://play.spotify.com/show/3ULH2wZtq1V7YV9tkL7hxq" />
+	</body>
+</opml>

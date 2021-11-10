@@ -1,0 +1,7 @@
+[PLUGIN]
+name = api.spotify_tools.plugins.get_opml
+purpose = "A plugin to generate an OPML file for the user's Spotify show subscriptions."
+priority = 200
+onload = onload
+cleanup = cleanup
+dependencies = api.spotify_tools.plugins.show_pseudo_rss

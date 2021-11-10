@@ -1,0 +1,6 @@
+[PLUGIN]
+name = api.spotify_tools.plugins.show_pseudo_rss
+purpose = "A plugin that produces a pseudo podcast rss file with links to the episodes on Spotify and streams it back to the requester."
+priority = 200
+cleanup = cleanup
+onload = onload

@@ -1,0 +1,6 @@
+[PLUGIN]
+name = api.rss_finder.plugins.podbean
+purpose = "Plugin for translating podbean urls to rss urls."
+priority = 200
+cleanup = cleanup
+onload = onload
