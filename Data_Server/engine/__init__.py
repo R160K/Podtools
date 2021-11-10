@@ -32,7 +32,7 @@ def start_server():
     app.add_routes([web.get("/", home)])
     app.add_routes([web.get("/{tail:.+}", respond)])
     app.add_routes([web.post("/{tail:.*}", signal_r)])
-
+    
     web.run_app(app)
     
     try:
@@ -42,6 +42,14 @@ def start_server():
         pass
         
     print("Finished.")
+
+def get_server():
+    app = web.Application()
+    app.add_routes([web.get("/", home)])
+    app.add_routes([web.get("/{tail:.+}", respond)])
+    app.add_routes([web.post("/{tail:.*}", signal_r)])
+    
+    return app
 
 async def start_server2():
     app = web.Application()
