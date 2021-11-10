@@ -1,6 +1,0 @@
-[PLUGIN]
-name = api.fake_plugin
-purpose = "Fake plugin."
-priority = 100
-onload = onload
-cleanup = cleanup

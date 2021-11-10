@@ -1,6 +1,0 @@
-[PLUGIN]
-name = api.rss_finder.plugins.acast
-purpose = "Plugin for translating acast urls to rss urls."
-priority = 200
-cleanup = cleanup
-onload = onload

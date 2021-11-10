@@ -1,4 +1,0 @@
-[PLUGIN]
-name = api.youtube_tools
-purpose = "Various APIs for interacting with Youtube channels."
-priority = 100

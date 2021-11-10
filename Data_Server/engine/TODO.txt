@@ -1,6 +1,0 @@
-[MINOR]
-1. Change "-Load_All_Plugins" so that it can accept a list of directories to load
-2. Add a "-Add_Hooks" signal.
-
-[MAJOR]
-1. Add the ability to __main__ to accept signals from the commandline.

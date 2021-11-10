@@ -1,1 +1,0 @@
-1. Non-streamed functions return an Obj of {Code, Headers, Body}, streamed ones return {Code, Headers, data}. Create more consistency.

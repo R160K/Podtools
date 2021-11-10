@@ -1,6 +1,0 @@
-[PLUGIN]
-name = api.spotify_tools.plugins.get_refresh_token
-purpose = "A plugin that retrieves a Spotify refresh token for a user."
-priority = 101
-cleanup = cleanup
-onload = onload

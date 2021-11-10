@@ -1,7 +1,0 @@
-[PLUGIN]
-name = api.spotify_tools
-purpose = "Various APIs for interacting with Spotify's API for podcasts."
-priority = 100
-cleanup = cleanup
-onload = onload
-plugins = api/spotify_tools/plugins
