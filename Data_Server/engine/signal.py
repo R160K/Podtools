@@ -21,6 +21,8 @@ class ValueLoader():
         #HACK: change href depending on system
         if href.startswith("../secrets/") and not os.path.isdir("../secrets"):
             href = "/home/secrets/" + href.split("../secrets/")[1]
+        elif href.startswith("../public/") and not os.path.isdir("../public"):
+            href = "/home/public/" + href.split("../public/")[1]
             
         self.href = href
         
