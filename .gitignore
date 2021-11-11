@@ -1,3 +1,4 @@
 /.git/
 /secrets
 __pycache__
+/venv/

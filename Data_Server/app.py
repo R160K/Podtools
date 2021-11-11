@@ -19,5 +19,5 @@ print("Complete.")
 
 # # asyncio.run(main())
 
-#app = engine.get_server()
-engine.start_server()
+app = engine.get_server()
+#engine.start_server()
