@@ -1,4 +1,5 @@
 /.git/
-/secrets
+/secrets/
 __pycache__
 /venv/
+/public/
