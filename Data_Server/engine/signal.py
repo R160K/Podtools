@@ -18,7 +18,12 @@ testy = "hidden"
 
 class ValueLoader():
     def __init__(self, href, add_to_list=True):
+        #HACK: change href depending on system
+        if href.startswith("../secrets/") and not os.path.isdir("../secrets"):
+            href = "/home/secrets/" + href.split("../secrets/")[1]
+            
         self.href = href
+        
         with open(href, "r") as f:
             self.content = f.read()
         
