@@ -86,6 +86,8 @@ async def process_signal(data):
             await unload_modules(args)
         elif sig == "-Load_Plugins":
             await load_plugins(args)
+        elif sig == "-Load_Plugins_Recursively":
+            await load_plugins(args, recursive=True)
         elif sig == "-Load_All_Plugins":
             await load_all_plugins()
         elif sig == "-Unload_Plugins":
@@ -101,6 +103,10 @@ async def process_signal(data):
         #GETTERS
         elif sig == "-GetAttr":
             pass
+        
+        #ELSE
+        elif sig == "-Kill":
+            exit()
         else:
             raise Exception("BAD REQUEST")
         
@@ -139,7 +145,7 @@ async def unload_modules(args):
     for m in unloads:
         del sys.modules[m]
 
-async def load_plugins(args):
+async def load_plugins(args, recursive=False):
     #TODO: currently only works with dirs, make work with names as well
     _plugins = []
     
@@ -164,6 +170,7 @@ async def load_plugins(args):
             except:
                 print("Error importing plugin:", a, "\n", e.__class__.__name__)
     
+    print("Ready to load!")
     loads = []
     reloads = []
     
@@ -174,11 +181,18 @@ async def load_plugins(args):
         else:
             loads += [p[0]]
     
-    if reloads:
-        plugins.reload_plugins(*reloads)
+    print("Loads sorted, trying reloads...")
+    print(reloads)
     
+    if reloads:
+        plugins.reload_plugins(*reloads, recursive=recursive)
+    
+    print("Reloads complete, trying loads...")
+    print(loads)
     if loads:
-        plugins.load_plugins(loads)
+        plugins.load_plugins(loads, recursive=recursive)
+    
+    print("Loads complete!")
 
 async def unload_plugins(args):
     _plugins = []
@@ -187,6 +201,7 @@ async def unload_plugins(args):
         print("Trying", a)
         try:
             pf = os.path.join(a, "file.plugin")
+            print("pf:", pf)
             async with aiofiles.open(pf, "r") as f:
                 raw_config = await f.read()
             parser = ConfigParser()

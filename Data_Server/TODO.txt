@@ -1,1 +1,5 @@
+[MAJOR]
+1. Find out if the signals system for reloading assets is: 1) compatible with gunicorn workers, 2) is worth keeping
+
+[MINOR]
 1. Non-streamed functions return an Obj of {Code, Headers, Body}, streamed ones return {Code, Headers, data}. Create more consistency.

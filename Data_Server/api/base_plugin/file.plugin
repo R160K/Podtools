@@ -4,3 +4,5 @@ purpose = "A basic plugin package that can be copied and pasted to create new pl
 priority = 100
 #onload = onload
 #cleanup = cleanup
+#plugins = api/path/to/plugin/folder
+#dependencies = None

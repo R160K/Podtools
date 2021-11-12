@@ -8,3 +8,7 @@ SIGNALS usage:
 		Remove "hook" (absolute python path) from "array" (absolute python path).
 	-Unload-Plugin plugin
 		Remove plugin with name "plugin" (absolute python path)
+
+
+
+NOTE: No idea whether this approach will work with gunicorn - where

@@ -93,8 +93,11 @@ def get_plugins(path):
     print("Plugins found:",dirs)
     return dirs
 
-def load_plugins(*args, **kwargs):
-    pass
+def load_plugins(dirs, recursive=True):
+    print("Packages to load:", dirs, type(dirs))
+    _primed = prime_plugins(dirs, returnVar=1, recursive=recursive)
+    _plugins = load_plugins2(_primed, returnVar=1)
+    return _plugins
 
 #Change to prime plugins
 #TODO: add a def to do all three: get, prime, load
@@ -251,7 +254,7 @@ def unload_plugins(*p):
     r = [x for x in __PLUGINS]
     print("After:", r)
 
-def reload_plugins(*p):
+def reload_plugins(*p, recursive=True):
     names = [x.name for x in p]
     print("Reloading plugins:", names)
     dirs = []
