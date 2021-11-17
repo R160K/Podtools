@@ -1,1 +1,1 @@
-https://api.pod-tools.com
+http://api.podtools.test

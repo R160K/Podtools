@@ -1,5 +1,12 @@
 [MAJOR]
 1. Find out if the signals system for reloading assets is: 1) compatible with gunicorn workers, 2) is worth keeping
+TRY KILLING IT AND SEE IF IT COMES BACK UP (maybe better to kill with an error)
+
+2. RSS_FINDER - if the find endpoint is activated but the url is not recognised, put out an error message that confirms this
+
+3. Add option to have more (all?) errors returned as JSON.
+
+4. Update server-side code to check Origin header of requests, match it against a list of origins and return (if appropriate) an access-control-allow-origin header.
 
 [MINOR]
 1. Non-streamed functions return an Obj of {Code, Headers, Body}, streamed ones return {Code, Headers, data}. Create more consistency.
