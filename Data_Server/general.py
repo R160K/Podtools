@@ -9,8 +9,8 @@ err_page = signal.ValueLoader(ERR_PAGE_HREF)
 BASE_URL_HREF = "../public/base_url.txt"
 base_url = signal.ValueLoader(BASE_URL_HREF)
 
-ALLOW_ORIGIN_HREF = "../public/allow_origin.txt"
-allow_origin = signal.ValueLoader(ALLOW_ORIGIN_HREF)
+# ALLOW_ORIGIN_HREF = "../public/allow_origin.txt"
+# allow_origin = signal.ValueLoader(ALLOW_ORIGIN_HREF)
 
 ###URL CHECKERS###
 
@@ -76,9 +76,9 @@ def isEndpoint(path,sought,returnVar="True"):
 ###PAGE BUILDERS###
 
 #A few boilerplate parts of responses
-XML_HEADERS = (("Content-type","text/xml"),("charset","utf-8"),("Access-Control-Allow-Origin", allow_origin.content),("blah", "blah"))
-HTML_HEADERS = (("Content-type","text/html"),("charset","utf-8"),("Access-Control-Allow-Origin", allow_origin.content))
-JSON_HEADERS = (("Content-type","application/json"),("charset","utf-8"),("Access-Control-Allow-Origin", allow_origin.content))
+XML_HEADERS = (("Content-type","text/xml"),("charset","utf-8"))
+HTML_HEADERS = (("Content-type","text/html"),("charset","utf-8"))
+JSON_HEADERS = (("Content-type","application/json"),("charset","utf-8"))
 
     
 def resp_builder(Code, Headers, Body):
