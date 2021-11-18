@@ -9,8 +9,6 @@ err_page = signal.ValueLoader(ERR_PAGE_HREF)
 BASE_URL_HREF = "../public/base_url.txt"
 base_url = signal.ValueLoader(BASE_URL_HREF)
 
-ALLOW_ORIGIN_HREF = "../public/allow_origin.txt"
-allow_origin = signal.ValueLoader(ALLOW_ORIGIN_HREF)
 
 ###URL CHECKERS###
 
