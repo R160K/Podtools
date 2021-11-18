@@ -76,9 +76,9 @@ def isEndpoint(path,sought,returnVar="True"):
 ###PAGE BUILDERS###
 
 #A few boilerplate parts of responses
-XML_HEADERS = (("Content-type","text/xml"),("charset","utf-8"),("Access-Control-Allow-Origin","*"))
-HTML_HEADERS = (("Content-type","text/html"),("charset","utf-8"),("Access-Control-Allow-Origin","*"))
-JSON_HEADERS = (("Content-type","application/json"),("charset","utf-8"),("Access-Control-Allow-Origin","*"))
+XML_HEADERS = (("Content-type","text/xml"),("charset","utf-8"))
+HTML_HEADERS = (("Content-type","text/html"),("charset","utf-8"))
+JSON_HEADERS = (("Content-type","application/json"),("charset","utf-8"))
 
     
 def resp_builder(Code, Headers, Body):
