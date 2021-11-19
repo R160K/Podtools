@@ -1,6 +1,15 @@
 <html>
 <head>
 	<title>Acquire refresh token</title>
+	<script language="javascript">
+		var refresh_token = "%s";
+		if (window.opener)
+		{
+			json_obj = { "spotify_refresh_token":refresh_token };
+			window.opener.postMessage(json_obj, "*");
+			window.close();
+		}
+	</script>
 </head>
 <body>
 	<p>Your code is:</p>

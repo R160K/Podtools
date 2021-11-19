@@ -6,8 +6,7 @@
 print("spotify_tools.get_refresh_token loading...")
 
 scopes = "user-library-read%20user-read-private"
-redirect_uri = "http://api.podtools.test/spotify/get_token"
-redirect_to = "http://podtools.test/#spotify%2Fget_token.html"
+redirect_uri = "http://127.0.0.1:8080/spotify/get_token"
 
 
 import general
@@ -19,7 +18,6 @@ import general
 import engine.async_if as async_if
 import engine.signal as signal
 import api.spotify_tools.plugins.common as common
-import json
 
 HTML_HREF = "./api/spotify_tools/plugins/get_refresh_token/html/get_token.html"
 html = signal.ValueLoader(HTML_HREF)
@@ -31,13 +29,11 @@ def url_hook(path):
     
     if truth:
         if "code" in queries:
-            data = {"queries": queries, "path": path}
-            Obj = {"data": data, "func": get_token}
+            Obj = {"data": queries, "func": get_token}
             return Obj
         else:
             #No access code in url query string. Redirect to Spotify to get one.
-            hash = urllib.parse.urlparse(path).fragment
-            Obj = {"data": hash, "func": spotify_login}
+            Obj = {"data": None, "func": spotify_login}
             return Obj
     else:
         return None
@@ -46,13 +42,7 @@ def url_hook(path):
 
 
 async def spotify_login(data):
-    print("hash:", data)
-    if data == "redirect":
-        redirect = redirect_uri + "#redirect"
-    else:
-        redirect = redirect_uri
-    
-    url = base.authorise_url + "?response_type=code&show_dialog=true&scope=" + scopes + "&client_id=" + base.client_id.content + "&redirect_uri=" + redirect
+    url = base.authorise_url + "?response_type=code&show_dialog=true&scope=" + scopes + "&client_id=" + base.client_id.content + "&redirect_uri=" + redirect_uri
     
     Code = 303
     Headers = {"Location": url}
@@ -63,16 +53,16 @@ async def spotify_login(data):
 
 async def get_token(data):
     try:
-        refresh_token_js = await access.get_token_from_code(data["queries"]["code"][0], redirect_uri, returnVar="JS")
+        refresh_token_js = await access.get_token_from_code(data["code"][0], redirect_uri, returnVar="JS")
     except access.TokenNotReturnedError as e:
-        error_page = general.error_page(400, "BAD REQUEST: Spotify refused to give an access token for the given access code:<br /><div style='font-size:14pt'>%s</div>" % data["queries"]["code"][0])
+        error_page = general.error_page(400, "BAD REQUEST: Spotify refused to give an access token for the given access code:<br /><div style='font-size:14pt'>%s</div>" % data["code"][0])
         resp = async_if.build_response(error_page)
         return resp
     
     refresh_token = refresh_token_js["refresh_token"]
     
     global html
-    Body = html.content % (refresh_token, refresh_token)
+    Body = html.content % refresh_token
     
     Code = 200
     Headers = general.HTML_HEADERS

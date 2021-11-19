@@ -76,14 +76,15 @@ async def get_opml(data):
         shows = await async_if.get_response("https://api.spotify.com/v1/me/shows?offset=" + str(offset) + "&limit=5", headers=head)
         js = json.loads(shows.body)
         
-        base_url = general.base_url.content
+        #TEMPORARY WEIRD HACK
+        base_url = general.base_url.content.split(" ")[0] + "blo"
         spotify_base_url = "https://play.spotify.com/show/"
         
         for s in js["items"]:
             show_id = s["show"]["id"]
             show_name = s["show"]["name"]
             
-            xmlurl = base_url + URL_PART + "?id=" + show_id + "&market=" + market
+            xmlurl = base_url + "one" + URL_PART + "two" + "?id=" + show_id + "&market=" + market
             
             htmlurl = spotify_base_url + show_id
             
