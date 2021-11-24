@@ -5,6 +5,7 @@
 		<docs>http://opml.org/spec2.opml</docs>
     </head>
     <body>
+		<outline type="rss" text="Doomsday Watch with Arthur Snell" title="Doomsday Watch with Arthur Snell" xmlUrl="http://api.podtools.test/spotify/show?id=6804XxgEpwWDuxwONETitC&amp;market=GB" htmlUrl="https://play.spotify.com/show/6804XxgEpwWDuxwONETitC" />
 		<outline type="rss" text="Real Pirates" title="Real Pirates" xmlUrl="http://api.podtools.test/spotify/show?id=1kccYfBJh374gfkNDVHiYr&amp;market=GB" htmlUrl="https://play.spotify.com/show/1kccYfBJh374gfkNDVHiYr" />
 		<outline type="rss" text="Partly Political Broadcast" title="Partly Political Broadcast" xmlUrl="http://api.podtools.test/spotify/show?id=23cfqklkcKkn510gS5YtDN&amp;market=GB" htmlUrl="https://play.spotify.com/show/23cfqklkcKkn510gS5YtDN" />
 		<outline type="rss" text="The Ties That Bind Us" title="The Ties That Bind Us" xmlUrl="http://api.podtools.test/spotify/show?id=6XWGEYeZaj6iOJh4fqeMER&amp;market=GB" htmlUrl="https://play.spotify.com/show/6XWGEYeZaj6iOJh4fqeMER" />
